@@ -1,13 +1,21 @@
 package com.example.mobileapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class AddExpense extends AppCompatActivity {
 
@@ -46,8 +54,43 @@ public class AddExpense extends AppCompatActivity {
             Intent intent1 = new Intent(AddExpense.this,UpdateTrip.class);
             startActivity(intent1);
         });
+        date.setOnFocusChangeListener((view,b) ->
+        {
+            if(b)
+            {
+                MainActivity.DatePickerFragment dpf = new MainActivity.DatePickerFragment();
+                dpf.setDateInput(date);
+                dpf.show(getSupportFragmentManager(),"datePicker");
+            }
+        });
 
 
+    }
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+        public void setDateInput(EditText dateInput) {
+            this.dateInput = dateInput;
+        }
+
+        public EditText getDateInput() {
+            return dateInput;
+        }
+
+        EditText dateInput;
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)
+        {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get((Calendar.YEAR));
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(requireContext(),this,year,month,day);
+
+        }
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            dateInput.setText((String.valueOf(i2 + "/" + i1 +"/" +i)));
+        }
     }
     public  boolean checkValidation()
     {
