@@ -97,11 +97,16 @@ public class UpdateTrip extends AppCompatActivity {
                         dbHelper.UpdateTrip(String.valueOf(TripId),name.getText().toString(),date.getText().toString(),destination.getText()
                                 .toString(),description.getText().toString(),personQuantity.getText().toString(),transport.getText().toString(),"Yes"
                         );
+
                     } else {
                         dbHelper.UpdateTrip(String.valueOf(TripId),name.getText().toString(),date.getText().toString(),destination.getText()
                                 .toString(),description.getText().toString(),personQuantity.getText().toString(),transport.getText().toString(),"No"
                         );
                     }
+                    Toast.makeText(this, "Update Successful!", Toast.LENGTH_SHORT).show();
+
+                    Intent i = new Intent(UpdateTrip.this,ViewAllTrips.class);
+                    startActivity(i);
                 }catch(Exception e){
                     Toast.makeText(this, "Adding fail!", Toast.LENGTH_SHORT).show();
                 }
@@ -133,10 +138,6 @@ public class UpdateTrip extends AppCompatActivity {
                         }
                     })
                     .show();
-            DatabaseHelper dbHelper = new DatabaseHelper(this);
-            dbHelper.deleteTrip(TripId);
-            Intent intent = new Intent(UpdateTrip.this,MainActivity.class);
-            startActivity(intent);
         });
 
         DatabaseHelper db = new DatabaseHelper(this);
@@ -152,6 +153,8 @@ public class UpdateTrip extends AppCompatActivity {
     {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         dbHelper.deleteTrip(TripId);
+        Intent intent = new Intent(UpdateTrip.this,ViewAllTrips.class);
+        startActivity(intent);
     }
     public  boolean checkValidation()
     {

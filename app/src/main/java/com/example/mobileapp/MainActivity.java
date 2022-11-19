@@ -58,16 +58,16 @@ public class MainActivity extends AppCompatActivity {
                 DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
                 try{
                     if(yes.isChecked()){
-                        dbHelper.insertTrips(name.getText().toString(),date.getText().toString(),description.getText().toString(),
-                                destination.getText().toString(),personQuantity.getText().toString(),
+                        dbHelper.insertTrips(name.getText().toString(),date.getText().toString(),destination.getText().toString(),
+                                description.getText().toString(),personQuantity.getText().toString(),
                                 transport.getText().toString(),"Yes"
                         );
                         Toast.makeText(this, "Add Trip Successful", Toast.LENGTH_SHORT).show();
 
 
                     } else {
-                        dbHelper.insertTrips(name.getText().toString(),date.getText().toString(),description.getText().toString(),
-                                destination.getText().toString(),personQuantity.getText().toString(),
+                        dbHelper.insertTrips(name.getText().toString(),date.getText().toString(),destination.getText().toString(),
+                                description.getText().toString(),personQuantity.getText().toString(),
                                 transport.getText().toString(),"No"
                         );
                         Toast.makeText(this, "Add Trip Successful", Toast.LENGTH_SHORT).show();
@@ -175,10 +175,10 @@ public class MainActivity extends AppCompatActivity {
         public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)
         {
             final Calendar c = Calendar.getInstance();
-            int year = c.get((Calendar.YEAR));
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            return new DatePickerDialog(requireContext(),this,year,month,day);
+            int y = c.get((Calendar.YEAR));
+            int m = c.get(Calendar.MONTH);
+            int d = c.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(requireContext(),this,y,m,d);
 
         }
         @Override

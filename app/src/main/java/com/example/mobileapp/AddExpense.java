@@ -81,10 +81,10 @@ public class AddExpense extends AppCompatActivity {
         public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)
         {
             final Calendar c = Calendar.getInstance();
-            int year = c.get((Calendar.YEAR));
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            return new DatePickerDialog(requireContext(),this,year,month,day);
+            int y = c.get((Calendar.YEAR));
+            int m = c.get(Calendar.MONTH);
+            int d = c.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(requireContext(),this,y,m,d);
 
         }
         @Override
